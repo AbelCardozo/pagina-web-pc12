@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+.body{
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('/assets/fondo/fondo-gamer.png') center/cover no-repeat;
+}

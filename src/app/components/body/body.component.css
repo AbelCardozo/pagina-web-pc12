@@ -1,0 +1,30 @@
+/* .productos {
+   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('/assets/fondo/fondo-gamer.png') center/cover no-repeat;
+  color: white;
+  padding: 100px 0;  
+}*/ 
+
+
+.card {
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+/*  Ajuste de imagen dentro de la tarjeta */
+.img-ajustada {
+  max-height: 180px;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.mb-4{
+color: white;
+}
+.mb-5{
+  color: white;
+}

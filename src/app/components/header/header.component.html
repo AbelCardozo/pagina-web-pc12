@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">Lucky Fox</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContenido"
+      aria-controls="navbarContenido"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContenido">
+      <!-- Menú principal -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/productos"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Productos</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/contacto"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Contacto</a
+          >
+        </li>
+        </ul>
+      <!-- Navegación usuario -->
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center gap-2">
+        <!-- Si no está logueado -->
+        <ng-container *ngIf="!usuarioLogueado; else logueadoTemplate">
+          <li class="nav-item">
+            <a
+              class="btn btn-light nav-link px-4"
+              routerLink="/iniciar-sesion"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Iniciar Sesión</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="btn btn-light nav-link px-4"
+              routerLink="/registrarse"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Registrarse</a
+            >
+          </li>
+        </ng-container>
+
+        <!-- Si está logueado -->
+        <ng-template #logueadoTemplate>
+          <li class="nav-item nav-text">
+            <span class="text-white fw-semibold">Hola, {{ nombreUsuario }}</span>
+          </li>
+          <li class="nav-item">
+            <button
+              class="btn btn-danger px-4"
+              routerLink="/cerrar-sesion"
+              routerLinkActive="active"
+              type="button"
+              >Cerrar Sesión</button
+            >
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+  
+  

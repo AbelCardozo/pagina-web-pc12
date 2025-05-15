@@ -1,0 +1,13 @@
+/* Estilos generales del contenedor de la aplicación */
+:host {
+    display: block;
+    min-height: 100vh;
+   /* background-color: #ffffff;*/
+    
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+      url('/assets/fondo/fondo-gamer.png') center/cover no-repeat;
+  
+  }
+  
+ 
+  

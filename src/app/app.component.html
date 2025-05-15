@@ -1,0 +1,8 @@
+<app-header></app-header>
+<br>
+<!-- Mostrar BODY solo cuando estás en la raíz "/" -->
+<app-body *ngIf="isHomeRoute"></app-body>
+<br>
+<router-outlet></router-outlet>
+<br>
+<app-footer></app-footer>

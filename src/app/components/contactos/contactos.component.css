@@ -2,3 +2,19 @@
   padding: 2rem;
   background-color: #e8f0fe;
 }
+
+.contact-info {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
+.contact-info img {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.horario {
+  margin: 10px 0;
+}

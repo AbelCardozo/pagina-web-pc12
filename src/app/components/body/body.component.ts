@@ -22,7 +22,7 @@ export class BodyComponent {
     },
     {
       nombre: 'Placa Base',
-      descripcion: 'Placa madre compatible con procesadores Intel/AMD.',
+      descripcion: 'Placa madre compatible con procesadores Intel.',
       imagen: 'placa-base.png'
     }
   ];

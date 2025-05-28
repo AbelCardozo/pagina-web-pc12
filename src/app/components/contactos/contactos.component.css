@@ -6,7 +6,7 @@
 .contact-info {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  color: #333;
+  color:white;
   text-align: center;
 }
 
@@ -17,4 +17,9 @@
 
 .horario {
   margin: 10px 0;
+  
+}
+
+.titulo{
+  color: white;
 }

@@ -1,5 +1,21 @@
 .productos {
-    padding: 2rem;
-    background-color: #f2f2f2;
-  }
-  
+  padding: 2rem;
+  background-color: #f2f2f2;
+}
+
+.product-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
+h2{
+  color: white;
+}

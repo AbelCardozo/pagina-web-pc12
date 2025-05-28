@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { UsuarioService } from '../services/usuario.service';
 
 @Component({
@@ -13,10 +14,9 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class RegistrarseComponent {
   user = '';
-  password = '';
   email = '';
-  error = '';
-  exito = '';
+  password = '';
+  confirmPassword = '';
 
   constructor(
     private usuarioService: UsuarioService,
@@ -24,7 +24,17 @@ export class RegistrarseComponent {
   ) {}
 
   registrar() {
-       const nuevoUsuario = {
+    if (!this.user || !this.email || !this.password || !this.confirmPassword) {
+      Swal.fire('Campos incompletos', 'Por favor, completa todos los campos.', 'warning');
+      return;
+    }
+
+    if (this.password !== this.confirmPassword) {
+      Swal.fire('Error', 'Las contraseñas no coinciden.', 'error');
+      return;
+    }
+
+    const nuevoUsuario = {
       user: this.user,
       password: this.password,
       email: this.email
@@ -33,10 +43,17 @@ export class RegistrarseComponent {
     const registrado = this.usuarioService.registrarUsuario(nuevoUsuario);
 
     if (registrado) {
-      this.exito = 'Usuario registrado con éxito';
-      this.router.navigate(['/iniciar-sesion']);
+      Swal.fire({
+        icon: 'success',
+        title: 'Usuario registrado con éxito',
+        showConfirmButton: false,
+        timer: 2000
+      });
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 2000);
     } else {
-      this.error = 'El usuario ya existe';
+      Swal.fire('Error', 'El usuario o el correo ya están registrados.', 'error');
     }
   }
 }

@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
+// Interfaz para el tipo de dato de un solo producto
 export interface Producto {
   nombre: string;
   descripcion: string;
   precio: number;
   imagen: string;
   cantidad: number;
+}
+
+// Nueva interfaz para la respuesta completa de la API
+export interface ProductosApiResponse {
+  success: boolean;
+  productos: Producto[];
 }
 
 @Injectable({
@@ -20,10 +26,10 @@ export class ProductosService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerProductos(): Observable<Producto[]> {
+  // El método ahora devuelve el objeto de respuesta completo, sin modificarlo.
+  // El tipo de retorno es ProductosApiResponse, lo que coincide con lo que tu componente espera.
+  obtenerProductos(): Observable<ProductosApiResponse> {
     const data = { action: 'getProducts' };
-    return this.http.post<any>(this.apiUrl, data).pipe(
-      map(response => response.productos)
-    );
+    return this.http.post<ProductosApiResponse>(this.apiUrl, data);
   }
 }

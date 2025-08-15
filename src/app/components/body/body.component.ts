@@ -1,30 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProductosService, Producto } from '../services/productos.service';
+import { RouterLink } from '@angular/router'; // Se añade RouterLink para los enlaces
 
 @Component({
   selector: 'app-body',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink], // Se añade RouterLink
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
-export class BodyComponent {
-  productos = [
-    {
-      nombre: 'Gabinete',
-      descripcion: 'Gabinete de PC moderno con diseño gaming y buena ventilación.',
-      imagen: 'gabinete.png'
-    },
-    {
-      nombre: 'Memoria DDR4 8GB',
-      descripcion: 'Memoria RAM DDR4 de 8GB a 2666MHz, ideal para multitarea.',
-      imagen: 'memoria-generico-dimm-ddr4-8gb-2666mhz-cl19-25158.png'
-    },
-    {
-      nombre: 'Placa Base',
-      descripcion: 'Placa madre compatible con procesadores Intel.',
-      imagen: 'placa-base.png'
-    }
-  ];
-  
-}  
+export class BodyComponent implements OnInit {
+  productos: Producto[] = [];
+
+  constructor(private productosService: ProductosService) { }
+
+  ngOnInit(): void {
+    this.productosService.obtenerProductos().subscribe(response => {
+      if (response.success) {
+        this.productos = response.productos;
+      }
+    });
+  }
+}

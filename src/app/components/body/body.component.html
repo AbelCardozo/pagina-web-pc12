@@ -1,3 +1,5 @@
+<br>
+<br>
 <section class="productos py-5">
   <div class="container text-center">
     <h2 class="mb-4">Nuestros Productos</h2>
@@ -6,18 +8,19 @@
     <div class="row">
       <div class="col-md-4 mb-4" *ngFor="let producto of productos">
         <div class="card h-100 shadow-sm">
-          <!--  Ruta corregida con / y separador -->
-          <img [src]="'/img/' + producto.imagen" class="card-img-top img-ajustada" alt="{{ producto.nombre }}">
+          <img [src]="'/productos/' + producto.imagen" class="card-img-top img-ajustada" alt="{{ producto.nombre }}">
 
           <div class="card-body">
             <h5 class="card-title fw-bold">{{ producto.nombre }}</h5>
             <p class="card-text">{{ producto.descripcion }}</p>
-           <!-- <a href="#" class="btn btn-primary">Ver más</a>-->
+            <p class="card-text fw-bold">Precio: ${{ producto.precio }}</p>
+            <p class="card-text">En stock: {{ producto.cantidad }}</p>
+            <a routerLink="/productos" class="btn btn-primary mt-auto">Ver más</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
+<br>
+<br>

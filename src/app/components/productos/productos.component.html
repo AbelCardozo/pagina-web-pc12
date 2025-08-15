@@ -1,7 +1,8 @@
+<br>
+<br>
 <main class="container mt-5">
   <h2 class="text-center mb-4">Productos</h2>
 
-  <!-- Buscador -->
   <div class="row mb-4">
     <div class="col-12 text-center">
       <input type="text" [(ngModel)]="filtro" class="form-control"
@@ -9,13 +10,12 @@
     </div>
   </div>
 
-  <!-- Catálogo -->
-  <div class="row  justify-content-center" id="catalogo">
+  <div class="row justify-content-center" id="catalogo">
     <div class="col-lg-3 col-md-4 col-sm-6 mb-4"
-         *ngFor="let producto of productosFiltrados">
+          *ngFor="let producto of productosFiltrados">
       <div class="card h-100 product-card">
         <img [src]="producto.imagen" class="card-img-top product-image"
-             [alt]="producto.nombre">
+              [alt]="producto.nombre">
         <div class="card-body">
           <h5 class="card-title">{{ producto.nombre }}</h5>
           <p class="card-text">${{ producto.precio | number:'1.2-2' }}</p>
@@ -25,6 +25,7 @@
       </div>
     </div>
   </div>
- 
 </main>
+<br>
+<br>
 

@@ -1,0 +1,18 @@
+import { neon } from '@netlify/neon';
+import fs from 'fs/promises';
+
+const sql = neon();
+
+async function setupDatabase() {
+    try {
+        const sqlScript = await fs.readFile('./db_init.sql', 'utf-8');
+        await sql.query(sqlScript);
+        console.log('Base de datos inicializada correctamente.');
+    } catch (error) {
+        // En un entorno de producción, este script solo debería ejecutarse una vez.
+        // Capturamos el error para no detener el despliegue si las tablas ya existen.
+        console.error('Error al inicializar la base de datos:', error.message);
+    }
+}
+
+setupDatabase();

@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-cerrar-sesion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './cerrar-sesion.component.html',
   styleUrls: ['./cerrar-sesion.component.css']
 })
 export class CerrarSesionComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // ✅ 1. Cierra sesión
+    // Llama al servicio para cerrar la sesión inmediatamente
     this.authService.cerrarSesion();
 
-    // ✅ 2. Espera 2 segundos para mostrar el mensaje antes de redirigir
+    // Retrasa la redirección para mostrar el mensaje
     setTimeout(() => {
       this.router.navigate(['/']);
-    }, 2000);
+    }, 2000); // Redirige después de 2 segundos
   }
 }
+//este modificque

@@ -5,26 +5,53 @@
   padding: 100px 0;  
 }*/ 
 
+h2 {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+p {
+  color: #ffffff;
+  font-weight: bold;
+}
+
 
 .card {
   border-radius: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  background-color: #2c2f33; /* Fondo oscuro para la tarjeta */
+  color: white;
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-/*  Ajuste de imagen dentro de la tarjeta */
+/* Ajuste de imagen dentro de la tarjeta */
 .img-ajustada {
   max-height: 180px;
   object-fit: contain;
   padding: 1rem;
 }
 
-.mb-4{
-color: white;
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.mb-5{
-  color: white;
+
+.card-title {
+  color: #7289da; /* Color de título más llamativo */
+}
+
+.btn-primary {
+  background-color: #7289da;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #5b6eae;
 }

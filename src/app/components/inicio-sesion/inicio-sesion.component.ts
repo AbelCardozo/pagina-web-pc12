@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../services/usuario.service';
@@ -9,14 +9,13 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-inicio-sesion',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule,RouterLink, FormsModule],
   templateUrl: './inicio-sesion.component.html',
   styleUrls: ['./inicio-sesion.component.css']
 })
 export class InicioSesionComponent {
   user = '';
   password = '';
-  error = '';
 
   constructor(
     private usuarioService: UsuarioService,
@@ -25,39 +24,38 @@ export class InicioSesionComponent {
   ) {}
 
   iniciarSesion() {
-    
-      console.log('Usuario ingresado:', this.user);
-      console.log('Contraseña ingresada:', this.password);
-      console.log('Contraseña hasheada:', this.usuarioService.hashearPassword(this.password));
+    this.usuarioService.validarUsuario(this.user, this.password).subscribe(
+      (response) => {
+        if (response.success) {
+          this.authService.iniciarSesion(this.user);
 
-      if (this.usuarioService.validarUsuario(this.user, this.password)) {
-      this.authService.iniciarSesion(this.user);
+          Swal.fire({
+            icon: 'success',
+            title: '¡Bienvenido!',
+            text: 'Inicio de sesión exitoso',
+            timer: 2000,
+            showConfirmButton: false
+          });
 
-      // ✅ Mostrar SweetAlert de éxito
-      Swal.fire({
-        icon: 'success',
-        title: '¡Bienvenido!',
-        text: 'Inicio de sesión exitoso',
-        timer: 2000,
-        showConfirmButton: false
-      });
-
-      setTimeout(() => {
-        this.router.navigate(['/']);
-      }, 2000);
-
-    } else {
-      // ❌ Mostrar SweetAlert de error
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Usuario o contraseña incorrectos'
-      });
-    }
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: response.message
+          });
+        }
+      },
+      (error) => {
+        console.error('Error en el inicio de sesión:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de conexión',
+          text: 'No se pudo conectar con el servidor. Por favor, verifica XAMPP.'
+        });
+      }
+    );
   }
 }
-
-
-
-
-

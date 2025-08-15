@@ -1,6 +1,0 @@
-[build]
-  command = "node setup_db.js && npm run build"
-  publish = "dist/pagina_web" # Asegúrate de que este sea el nombre de tu carpeta de compilación
-
-[functions]
-  directory = "netlify/functions"

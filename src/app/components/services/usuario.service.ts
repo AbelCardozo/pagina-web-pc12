@@ -12,8 +12,8 @@ export interface Usuario {
   providedIn: 'root'
 })
 export class UsuarioService {
-  // Reemplaza con la URL de tu API
-  private apiUrl = 'http://localhost/api/api.php';
+  // Ahora apunta a tu Netlify Function
+  private apiUrl = '/.netlify/functions/api';
 
   constructor(private http: HttpClient) { }
 

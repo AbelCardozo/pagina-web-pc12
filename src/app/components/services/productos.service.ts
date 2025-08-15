@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface Producto {
   nombre: string;
@@ -14,12 +15,15 @@ export interface Producto {
   providedIn: 'root'
 })
 export class ProductosService {
-  private apiUrl = 'http://localhost/api/api.php';
+  // Ahora apunta a tu Netlify Function
+  private apiUrl = '/.netlify/functions/api';
 
   constructor(private http: HttpClient) { }
 
-  obtenerProductos(): Observable<any> {
+  obtenerProductos(): Observable<Producto[]> {
     const data = { action: 'getProducts' };
-    return this.http.post(this.apiUrl, data);
+    return this.http.post<any>(this.apiUrl, data).pipe(
+      map(response => response.productos)
+    );
   }
 }
